@@ -1,7 +1,7 @@
-﻿using System.Text.Json;
+﻿using System.Security.Cryptography;
+using System.Text.Json;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using StackExchange.Redis;
@@ -94,13 +94,24 @@ namespace TwoFactorAuthAPI.Controllers
 
         private string GenerateConfirmationCode()
         {
-            // Generate a random confirmation code
-            return "123456"; // Replace this with your code generation logic
+            int codeLength = 6;
+            // Generate a random code of specified length
+            byte[] randomBytes = new byte[codeLength];
+            using (var rng = RandomNumberGenerator.Create())
+            {
+                rng.GetBytes(randomBytes);
+            }
+
+            // Convert bytes to a numeric string
+            int value = BitConverter.ToInt32(randomBytes, 0);
+            value = Math.Abs(value); 
+            string code = value.ToString().Substring(0, codeLength);
+
+            return code.PadLeft(codeLength, '0');
         }
 
         private void LogCode(string code)
         {
-            // Log the code (use your logging mechanism here)
             Console.WriteLine($"Confirmation code: {code}");
         }
     }
