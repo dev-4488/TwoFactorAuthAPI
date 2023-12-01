@@ -1,0 +1,138 @@
+{
+	"info": {
+		"_postman_id": "3b4dd423-e995-49aa-b289-2859a5d826a2",
+		"name": "TwoFactorAuthAPI",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "23781147",
+		"_collection_link": "https://warped-firefly-448280.postman.co/workspace/dentrix_ascend~71468c4a-f9c7-42b4-ae4e-890f9714c397/collection/23781147-3b4dd423-e995-49aa-b289-2859a5d826a2?action=share&source=collection_link&creator=23781147"
+	},
+	"item": [
+		{
+			"name": "Get Access Token",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "grant_type",
+							"value": "client_credentials",
+							"type": "text"
+						},
+						{
+							"key": "client_id",
+							"value": "Demo",
+							"type": "text"
+						},
+						{
+							"key": "client_secret",
+							"value": "Test@123",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://localhost:7109/connect/token",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7109",
+					"path": [
+						"connect",
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Send Code",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsImtpZCI6IjhGMERDOTAxOEQ0MjI2MTlBQkZEQjczNTQ2QTc0NkQ0IiwidHlwIjoiYXQrand0In0.eyJuYmYiOjE3MDE0MTcxMTQsImV4cCI6MTcwMTQyMDcxNCwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzEwOSIsImNsaWVudF9pZCI6IkRlbW8iLCJqdGkiOiJBRTZFQjdFRkM0NjU4ODk2NjBGREIwMkJCRjA0Qjk2RiIsImlhdCI6MTcwMTQxNzExNCwic2NvcGUiOlsiYXBpMSJdfQ.XkQRoeWxbOVP8YRKhFHaiDks_zZ4SDOoubhtWx7XnKyW8D1LZ07JCjmIo558PKerfTwGThJPGKSXpkC5cLaUL0CHfYhEukNCaQYLgYK7emMBkVpQlXlsbbpZK8bj1IKyAFpVVCKKbnoFIn9yJcpXnA0RDNJ4k7YK0h8FKi8leD6MnnPlU7AmKPYGeJkYKvgU8loNHf1saE-FaZAU5eQTocenkb5PShFJ0jG4-Ayer550s-cz-sauNEr2fIeUDHlHNeIgrU-fwYIrk_7MGPRBJ2NTYYy74BrTRR1-f6qMBqTKnGYcC3dHuyH0PyF6RpFC6MazwmO_BucTZp_XsvubYQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"phone\": \"89798797\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:7109/api/TwoFactorAuth/api/2fa/send-code",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7109",
+					"path": [
+						"api",
+						"TwoFactorAuth",
+						"api",
+						"2fa",
+						"send-code"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Check Code",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsImtpZCI6IjhGMERDOTAxOEQ0MjI2MTlBQkZEQjczNTQ2QTc0NkQ0IiwidHlwIjoiYXQrand0In0.eyJuYmYiOjE3MDE0MTYwMzcsImV4cCI6MTcwMTQxOTYzNywiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzEwOSIsImNsaWVudF9pZCI6IkRlbW8iLCJqdGkiOiJBMjhDQzk3MEE3OUZFOEMwMTM1NjRGOTk5ODQyREVGQyIsImlhdCI6MTcwMTQxNjAzNywic2NvcGUiOlsiYXBpMSJdfQ.PKdd4wMYqpiksmn_oMztFNU_lCWHpJR_Uv8NcdczHT0qaj8cy3xhCjvxBO0hBxHtnMkxMgFSDNseqTPM-blyqX0__c-ZvVLxWWdLC8t0Rl7fNrvONoZ6UllGxUfdCqA7JDMSKpA4tnSf8QetL0MuQVKU2YQkWvqjC27hfs6zCGIgfbDP2SSpGyleEjnu-uubDnLZ4HfI8EsiJrZ-gdW_ckSzW8RzetGO79VDjdf3dKj-IG2SH9DG4UIofSZa8iiiKFeSpl5yDGeC1Du3sb84dRbFH6CovQwWLkMH_FlNinTWU7fwa4VQBF0_XiiADoiGYEMtmkeyaf5CXhWGs9PW5Q",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"phone\": \"89798797\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:7109/api/TwoFactorAuth/api/2fa/check-code",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7109",
+					"path": [
+						"api",
+						"TwoFactorAuth",
+						"api",
+						"2fa",
+						"check-code"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
