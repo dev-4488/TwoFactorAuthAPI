@@ -3,10 +3,12 @@ Two-Factor Authentication Service
 This service provides APIs for two-factor authentication using .NET Core and Redis as a caching mechanism.
 
 **Prerequisites**
+
 .NET Core SDK
 Redis
 
 **Getting Started**
+
 Clone this repository:
 
 bash
